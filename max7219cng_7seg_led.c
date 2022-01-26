@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define DIG2          0b00000001
 #define SHUTDOWN      0b0000110000000000
 #define SCANLIMIT     0b0000101100000000
 #define NORMAL_OP     0b0000110000000001
@@ -27,6 +26,12 @@
 #define BLANK         0b00001111
 
 char spiOut[2];
+
+//DIG0
+unsigned short digits[]={
+        0b00000001
+};
+
 unsigned short config[]={
         NORMAL_OP,
         SCANLIMIT,
@@ -34,8 +39,7 @@ unsigned short config[]={
         DECODE_MODE_B
 };
 
-unsigned short data[]=
-{
+unsigned short data[]={
         ZERO,
         ONE,
         TWO,
@@ -51,6 +55,7 @@ unsigned short data[]=
         L_LETTER,
         P_LETTER,
         DASH,
+        BLANK,
         SHUTDOWN
 };
 
@@ -64,25 +69,21 @@ void configCommand(unsigned short command){
         makeWord(spiOut, command);
         bcm2835_spi_transfern(spiOut, sizeof(spiOut));
 }
-void dig_2(unsigned short d2){
-        spiOut[0] = DIG2;
-        spiOut[1] = d2;
+void transfer_data_to_digits(unsigned short digit, unsigned short data){
+        spiOut[0] = digit;
+        spiOut[1] = data;
         bcm2835_spi_transfer(spiOut[0]);
         bcm2835_spi_transfer(spiOut[1]);
 }
 
-void clear_digits(){
-        dig_2(BLANK);
-}
-
-void loop_through_all_data(){
+void loop_through_all_data(unsigned short digit){
         // Loop through the data 1-9,-,E,H,L,P
         for(int i = 0; i < (sizeof(data)/sizeof(data[0])); i++){
                 if(data[i]==SHUTDOWN){
                         configCommand(data[i]);
                         break;
                 }
-                dig_2(data[i]);
+                transfer_data_to_digits(digit, data[i]);
                 sleep(1);
         }
 }
@@ -101,7 +102,7 @@ int main(){
                configCommand(config[k]);
         }
 
-        loop_through_all_data();
+        loop_through_all_data(digits[0]);
 
         return 0;
 }
