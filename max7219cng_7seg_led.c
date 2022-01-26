@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <bcm2835.h>
-#include <stdlib.h>
 #include <unistd.h>
 
 #define SHUTDOWN      0b0000110000000000
