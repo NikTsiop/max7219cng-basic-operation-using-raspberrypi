@@ -71,7 +71,7 @@ void dig_2(unsigned short d2){
         bcm2835_spi_transfer(spiOut[1]);
 }
 
-void clear_digites(){
+void clear_digits(){
         dig_2(BLANK);
 }
 
