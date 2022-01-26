@@ -1,2 +1,1 @@
-# max7219cng basic operation
- 
+# MAX7219CNG 7SegLed Controller using Raspberry Pi
