@@ -66,8 +66,10 @@ void makeWord(char eightBits[], unsigned short sixteenBits){
 
 void configCommand(unsigned short command){
         makeWord(spiOut, command);
-        bcm2835_spi_transfern(spiOut, sizeof(spiOut));
+        bcm2835_spi_transfer(spiOut[0]);
+        bcm2835_spi_transfer(spiOut[1]);
 }
+
 void transfer_data_to_digits(unsigned short digit, unsigned short data){
         spiOut[0] = digit;
         spiOut[1] = data;
