@@ -75,7 +75,7 @@ void clear_digites(){
         dig_2(BLANK);
 }
 
-void loop_through_all_chars(){
+void loop_through_all_data(){
         // Loop through the data 1-9,-,E,H,L,P
         for(int i = 0; i < (sizeof(data)/sizeof(data[0])); i++){
                 if(data[i]==SHUTDOWN){
@@ -101,7 +101,7 @@ int main(){
                configCommand(config[k]);
         }
 
-        loop_through_all_chars();
+        loop_through_all_data();
 
         return 0;
 }
