@@ -24,7 +24,7 @@ BCM2835 Library, for the installation check here: https://www.airspayce.com/mike
 | PIN-COM| PIN2(DIG0) |
 
 ## Breadboard
-![alt text]()
+![alt text](https://github.com/NikTsiop/max7219cng-basic-operation-using-raspberrypi/blob/main/max7219SegLed_breadboard.png)
 
 ## Compile
 `c++ -o max7219cng_run max7219cng_7seg_led.c -lbcm2835`
