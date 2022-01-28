@@ -11,6 +11,7 @@ BCM2835 Library, for the installation check here: https://www.airspayce.com/mike
 | PIN1(DIN) | PIN19(MOSI) |
 | PIN13(CLK) | PIN23(SCLK)|
 | PIN12(LOAD)| PIN24(CEO)|
+| PIN18(ISET)| connect to 5V with 10kΩ |
 
 |7-SEG LED| MAX7219CNG|
 | :- | :- |
